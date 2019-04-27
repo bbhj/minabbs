@@ -1,0 +1,13 @@
+conf/*
+test/conf/*
+keys/
+crontab/
+nohup.out
+baobeihuijia
+plugins/*.so
+bbac
+logs/*
+lastupdate.tmp
+routers/commentsRouter__*.go
+vendor/*
+swagger/*
