@@ -2,7 +2,7 @@ package models
 
 import (
 	_ "errors"
-	_ "github.com/jinzhu/gorm"
+	"github.com/jinzhu/gorm"
 	_ "github.com/astaxie/beego"
 )
 
@@ -28,6 +28,13 @@ func GetArticle(id int) (c Article, err error) {
 	}
 	return
 }
+
+func UpdateArticleReply(topic_id, user_id int) (a Article, err error) {
+	// conn.Table("article_summaries").Where("babyid = ?", babyid).UpdateColumn("Forward", gorm.Expr("forward + ?", 1))
+	conn.Debug().Model(&a).Where("id = ?", topic_id).UpdateColumn("last_reply_user_id", user_id).UpdateColumn("reply_count", gorm.Expr("reply_count + ?", 1))
+	return
+}
+
 
 func  TestRelated() {
 	var a  Article

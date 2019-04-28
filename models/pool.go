@@ -24,7 +24,7 @@ func Close() {
 
 func Init() (flag bool, errmsg string) {
 	
-	conn = conn.Set("gorm:table_options", "CHARSET=utf8")
+	conn = conn.Set("gorm:table_options", "CHARSET=utf8mb4")
 	
 	conn = conn.AutoMigrate(&User{})
 	conn = conn.AutoMigrate(&Category{})

@@ -89,6 +89,9 @@ func (u *TopicController) Get() {
 		ru.User, _ = models.GetUser(reply.UserID)
 		topic.TopReplies.Data = append(topic.TopReplies.Data, ru)
 	}
+	if (topic.TopReplies.Data == nil) {
+		topic.TopReplies.Data = append(topic.TopReplies.Data, ru)
+	}
 
 	// for i, _ := range topic.TopReplies.Data {
 	// 	beego.Error("index=====", i)

@@ -10,6 +10,7 @@ var ()
 
 func AddReply(a Reply) (err error) {
 	conn.Save(&a)
+	UpdateArticleReply(a.TopicID, a.UserID)
 	return
 }
 
