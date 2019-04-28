@@ -6,6 +6,8 @@ nohup.out
 baobeihuijia
 plugins/*.so
 bbac
+minabbs
+main
 logs/*
 lastupdate.tmp
 routers/commentsRouter__*.go
