@@ -22,7 +22,7 @@ func (u *TopicController) Post() {
 	var article models.Article
 	json.Unmarshal(u.Ctx.Input.RequestBody, &article)
 	// remove(article, article.User)
-	beego.Error("======", article)
+	beego.Error("==11111====", article.UserID)
 	a, _ := models.AddArticle(article)
 	beego.Error("======", a)
 	u.ServeJSON()

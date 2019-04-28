@@ -14,10 +14,12 @@ func init() {
 
 type (
 	Profile struct {
-		Openid  string `json:"openid"`
-		AccessToken string `json:"access_token"`
-		UserID	uint	`json:"user_id"`
+		Openid  string `json:"Openid"`
+		AccessToken string `json:"AccessToken"`
+		UserID	uint	`json:"UserID"`
 	}
+		// AccessToken string `json:"access_token"`
+		// UserID	uint	`json:"user_id"`
 
 	UserReply struct {
 		Data []Article `json:"data"`
