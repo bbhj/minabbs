@@ -4,6 +4,7 @@
 FROM airdb/beego
 MAINTAINER Dean dean@airdb.com
 
+ENV GO111MODULE on
 WORKDIR  /go/src/github.com/bbhj/minabbs
 COPY go.mod go.sum ./
 RUN go mod download
