@@ -1,7 +1,10 @@
 package controllers
 
 import (
+	"fmt"
 	"github.com/bbhj/minabbs/models"
+	"time"
+	"github.com/imroc/req"	
 	"encoding/json"
 
 	"github.com/astaxie/beego"
@@ -19,12 +22,19 @@ type UserController struct {
 // @Failure 403 body is empty
 // @router / [post]
 func (u *UserController) Post() {
-        var user models.User
-        json.Unmarshal(u.Ctx.Input.RequestBody, &user )
-        beego.Error("=!!!!!!=scene==", user)
-	models.AddUser(user)
+	var scene models.WechatLoginScene
+	json.Unmarshal(u.Ctx.Input.RequestBody, &scene)
+	beego.Error("=!!!!!!=scene==", scene.User)
 
-	u.ServeJSON()
+	apiurl := beego.AppConfig.String("wechatcode") + scene.Code
+
+	req.SetTimeout(50 * time.Second)
+	a, _ := req.Get(apiurl)
+
+	var id models.WechatID
+
+	a.ToJSON(&id)
+	beego.Error("openidid === ", id)
 }
 
 // @Title GetAll
@@ -113,8 +123,28 @@ func (u *UserController) GetUserTopic() {
 // @Param	body		body 	models.User	true		"body for user content"
 // @Success 200 {object} models.User
 // @Failure 403 :uid is not int
-// @router /:uid [put]
+// @router / [put]
 func (u *UserController) Put() {
+	var scene models.WechatLoginScene
+	json.Unmarshal(u.Ctx.Input.RequestBody, &scene)
+	beego.Error("=!!!!!!=scene==", scene.User)
+
+	apiurl := fmt.Sprintf("https://api.weixin.qq.com/sns/jscode2session?appid=wxc4e11081e3d5bdf7&secret=e3284a3123d4ed4e06ee09bf0171bef7&js_code=%s&grant_type=authorization_code", scene.Code)
+
+	req.SetTimeout(50 * time.Second)
+	a, _ := req.Get(apiurl)
+
+	var id models.WechatID
+
+	a.ToJSON(&id)
+	beego.Error("openidid === ", id)
+
+	scene.User.BoundWechat = id.Openid
+	beego.Error("==!!!!!==", scene)
+
+	models.UpdateUser(scene.User)
+	// // models.AddWechatLoginScene(scene)
+	u.Data["json"] = id
 	u.ServeJSON()
 }
 

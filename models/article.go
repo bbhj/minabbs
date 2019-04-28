@@ -8,14 +8,14 @@ import (
 
 var ()
 
-func AddArticle(a Article) (err error) {
-	conn.FirstOrCreate(&a, Article{Title: a.Title})
-	// conn.Save(&a)
+func AddArticle(a Article) (article Article, err error) {
+	// conn.Debug().FirstOrCreate(&a, Article{Title: a.Title})
+	conn.Save(&a)
 	return
 }
 
 func GetAllArticles() (c []Article, err error) {
-	pagesize := 5
+	pagesize := 10000
 	conn.Limit(pagesize).Find(&c)
 	return
 }

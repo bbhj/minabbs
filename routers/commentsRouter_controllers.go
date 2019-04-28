@@ -145,17 +145,17 @@ func init() {
 
 	beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:UserController"] = append(beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:UserController"],
 		beego.ControllerComments{
-			Method: "Get",
-			Router: `/:uid`,
-			AllowHTTPMethods: []string{"get"},
+			Method: "Put",
+			Router: `/`,
+			AllowHTTPMethods: []string{"put"},
 			MethodParams: param.Make(),
 			Params: nil})
 
 	beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:UserController"] = append(beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:UserController"],
 		beego.ControllerComments{
-			Method: "Put",
+			Method: "Get",
 			Router: `/:uid`,
-			AllowHTTPMethods: []string{"put"},
+			AllowHTTPMethods: []string{"get"},
 			MethodParams: param.Make(),
 			Params: nil})
 

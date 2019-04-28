@@ -23,7 +23,8 @@ func (u *TopicController) Post() {
 	json.Unmarshal(u.Ctx.Input.RequestBody, &article)
 	// remove(article, article.User)
 	beego.Error("======", article)
-	models.AddArticle(article)
+	a, _ := models.AddArticle(article)
+	beego.Error("======", a)
 	u.ServeJSON()
 }
 
@@ -44,14 +45,14 @@ func (u *TopicController) GetAll() {
 		art2.Article = article
 		art2.Category, _ = models.GetCategory(article.CategoryID)
 		art2.User, _ = models.GetUser(article.UserID)
-		// art2.TopReplies.Data.Reply, _ = models.GetAllReplies()
-		replies, _  :=  models.GetAllReplies()
-		var ru models.ReplyUser
-		for _, reply := range replies {
-			ru.Reply  = reply	
-			ru.User, _ = models.GetUser(reply.UserID)
-			art2.TopReplies.Data = append(art2.TopReplies.Data, ru)
-		}
+		// // art2.TopReplies.Data.Reply, _ = models.GetAllReplies()
+		// replies, _  :=  models.GetAllReplies()
+		// var ru models.ReplyUser
+		// for _, reply := range replies {
+		// 	ru.Reply  = reply	
+		// 	ru.User, _ = models.GetUser(reply.UserID)
+		// 	art2.TopReplies.Data = append(art2.TopReplies.Data, ru)
+		// }
 		topics.Data = append(topics.Data, art2)
 
 	}

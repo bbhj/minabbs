@@ -2,6 +2,7 @@ package models
 
 import (
 	_ "errors"
+	"github.com/astaxie/beego"
 	"github.com/jinzhu/gorm"
 	"time"
 )
@@ -119,6 +120,18 @@ func AddUser(u User) (err error) {
 	// conn.Save(&u)
 	return
 }
+
+func UpdateUser(u User) (user User, err error) {
+	conn.Debug().Model(&user).Select("name", "nick_name", "avatar").Where("bound_wechat = ?", u.BoundWechat).Update(&u)
+	beego.Info(conn.Error)
+	return
+}
+
+func AddUserByWechat(openid string) ( user User, err error) {
+	conn.FirstOrCreate(&user, User{BoundWechat: openid})
+	return
+}
+
 func GetAllUsers() (u []User, err error) {
 	pagesize := 5
 	conn.Limit(pagesize).Find(&u)

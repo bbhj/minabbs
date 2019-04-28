@@ -13,9 +13,16 @@ type (
 		Code   string `json:code"`
 		Openid string `json:"openid"`
 		Scene  int    `json:"scene"`
+		Query 		`json:"query"`
 		Path   string `json:"path"`
 		IV            string `json:"iv"`
 		EncryptedData string `json:"encryptedData"`
+		User
+	}
+
+	Query struct {
+		ID string `json:"id"`
+		Openid string `json:"openid"`
 	}
 
 	WechatID struct {
