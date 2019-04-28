@@ -40,8 +40,13 @@ func (u *AuthorizationController) Post() {
 	beego.Error("==!!!!!==", scene)
 
 	b, _ := models.AddUserByWechat(id.Openid)
-	beego.Error("======", b)
+
+	var profile models.Profile
+	profile.UserID = b.ID
+	profile.Openid = b.BoundWechat
+	profile.AccessToken = "xxxxx"
+
 	// models.AddWechatLoginScene(scene)
-	u.Data["json"] = b
+	u.Data["json"] = profile
 	u.ServeJSON()
 }

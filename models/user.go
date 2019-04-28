@@ -12,14 +12,13 @@ var ()
 func init() {
 }
 
-type Profile struct {
-	Gender  string
-	Age     int
-	Address string
-	Email   string
-}
-
 type (
+	Profile struct {
+		Openid  string `json:"openid"`
+		AccessToken string `json:"access_token"`
+		UserID	uint	`json:"user_id"`
+	}
+
 	UserReply struct {
 		Data []Article `json:"data"`
 		Meta `json:"meta"`

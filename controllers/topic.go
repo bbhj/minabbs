@@ -49,7 +49,7 @@ func (u *TopicController) GetAll() {
 		// replies, _  :=  models.GetAllReplies()
 		// var ru models.ReplyUser
 		// for _, reply := range replies {
-		// 	ru.Reply  = reply	
+		// 	ru.Reply  = reply
 		// 	ru.User, _ = models.GetUser(reply.UserID)
 		// 	art2.TopReplies.Data = append(art2.TopReplies.Data, ru)
 		// }
@@ -75,19 +75,20 @@ func (u *TopicController) Get() {
 	var topic models.Topic
 	// json.Unmarshal([]byte(aa), &topic)
 
-	topic.Article, _ = models.GetArticle( topic_id )
+	topic.Article, _ = models.GetArticle(topic_id)
 
 	topic.Category, _ = models.GetCategory(3)
 	// topic.TopReplies.Data, _ = models.GetAllReplies()
 	topic.User, _ = models.GetUser(topic.Article.UserID)
 
-		replies, _  :=  models.GetAllReplies()
-		var ru models.ReplyUser
-		for _, reply := range replies {
-			ru.Reply  = reply	
-			ru.User, _ = models.GetUser(reply.UserID)
-			topic.TopReplies.Data = append(topic.TopReplies.Data, ru)
-		}
+	//	replies, _  :=  models.GetAllReplies()
+	replies, _ := models.GetRepliesByTopicID(topic_id)
+	var ru models.ReplyUser
+	for _, reply := range replies {
+		ru.Reply = reply
+		ru.User, _ = models.GetUser(reply.UserID)
+		topic.TopReplies.Data = append(topic.TopReplies.Data, ru)
+	}
 
 	// for i, _ := range topic.TopReplies.Data {
 	// 	beego.Error("index=====", i)
@@ -109,21 +110,30 @@ func (u *TopicController) PostReply() {
 	json.Unmarshal(u.Ctx.Input.RequestBody, &reply)
 	beego.Error(reply.TopicID)
 	models.AddReply(reply)
-        u.ServeJSON()
+	u.ServeJSON()
 }
 
 // @Title Get
-// @Description get user by uid
-// @Param	uid		path 	string	true		"The key for staticblock"
+// @Description get topic replies  by id
+// @Param	id		path 	string	true		"The key for staticblock"
 // @Success 200 {object} models.User
 // @Failure 403 :uid is empty
-// @router /:uid/replies [get]
+// @router /:id/replies [get]
 func (u *TopicController) GetReply() {
+	topic_id, _ := u.GetInt(":id")
 	var rep models.TopicReplies
 	// rep.replies, _ = models.GetAllReplies()
 	// rep.Data, _ = models.GetAllReplies()
-	rep.Data[0].User, _ = models.GetUser(1)
-	rep.Data[1].User, _ = models.GetUser(1)
+	replies, _ := models.GetRepliesByTopicID(topic_id)
+
+	var replyuser models.ReplyUser
+	for _, reply := range replies {
+		replyuser.Reply = reply
+		replyuser.User, _ = models.GetUser(reply.UserID)
+		rep.Data = append(rep.Data, replyuser)
+	}
+	// rep.Data[0].User, _ = models.GetUser(1)
+	// rep.Data[1].User, _ = models.GetUser(1)
 	rep.Meta.Pagination.Count = 2
 	rep.Meta.Pagination.Total = 2
 	rep.Meta.Pagination.Links = ""

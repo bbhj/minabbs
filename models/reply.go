@@ -19,6 +19,11 @@ func GetAllReplies() (c []Reply, err error) {
 	return
 }
 
+func GetRepliesByTopicID(topic_id int) (replies []Reply, err error) {
+	pagesize := 10
+	conn.Where("topic_id = ?", topic_id).Limit(pagesize).Find(&replies)
+	return
+}
 
 func GetReply(id int) (c Reply, err error) {
 	conn.First(&c, id)

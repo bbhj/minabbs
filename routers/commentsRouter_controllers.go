@@ -81,6 +81,14 @@ func init() {
 
 	beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:TopicController"] = append(beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:TopicController"],
 		beego.ControllerComments{
+			Method: "GetReply",
+			Router: `/:id/replies`,
+			AllowHTTPMethods: []string{"get"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:TopicController"] = append(beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:TopicController"],
+		beego.ControllerComments{
 			Method: "Put",
 			Router: `/:uid`,
 			AllowHTTPMethods: []string{"put"},
@@ -100,14 +108,6 @@ func init() {
 			Method: "PostReply",
 			Router: `/:uid/replies`,
 			AllowHTTPMethods: []string{"Post"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:TopicController"] = append(beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:TopicController"],
-		beego.ControllerComments{
-			Method: "GetReply",
-			Router: `/:uid/replies`,
-			AllowHTTPMethods: []string{"get"},
 			MethodParams: param.Make(),
 			Params: nil})
 
