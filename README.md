@@ -1,1 +1,3 @@
 # minabbs
+
+Support docker build
