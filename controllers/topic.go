@@ -63,18 +63,20 @@ func (u *TopicController) GetAll() {
 }
 
 // @Title Get
-// @Description get user by uid
-// @Param	uid		path 	string	true		"The key for staticblock"
+// @Description get user by id
+// @Param	id		path 	string	true		"The key for staticblock"
 // @Success 200 {object} models.User
-// @Failure 403 :uid is empty
-// @router /:uid [get]
+// @Failure 403 :id is empty
+// @router /:id [get]
 func (u *TopicController) Get() {
 
+	topic_id, _ := u.GetInt(":id")
 	// Article2
 	var topic models.Topic
 	// json.Unmarshal([]byte(aa), &topic)
 
-	topic.Article, _ = models.GetArticle(5)
+	topic.Article, _ = models.GetArticle( topic_id )
+
 	topic.Category, _ = models.GetCategory(3)
 	// topic.TopReplies.Data, _ = models.GetAllReplies()
 	topic.User, _ = models.GetUser(topic.Article.UserID)
