@@ -22,6 +22,7 @@ func init() {
 		beego.NSNamespace("/api/topics", beego.NSInclude( &controllers.TopicController{},),),
 		beego.NSNamespace("/api/weapp/authorizations", beego.NSInclude( &controllers.AuthorizationController{},),),
 		beego.NSNamespace("/api/weapp/users", beego.NSInclude( &controllers.UserController{},),),
+		beego.NSNamespace("/api/wechat", beego.NSInclude( &controllers.WechatController{},),),
 	)
 	beego.AddNamespace(ns)
 }
