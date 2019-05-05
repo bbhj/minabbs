@@ -15,7 +15,7 @@ import (
 
 func init() {
 	ns := beego.NewNamespace("/v1",
-		beego.NSNamespace("/db", beego.NSInclude(&controllers.DBController{})),
+		beego.NSNamespace("/init", beego.NSInclude(&controllers.InitController{})),
 		beego.NSNamespace("/api/user", beego.NSInclude( &controllers.UserController{},),),
 		beego.NSNamespace("/api/users", beego.NSInclude( &controllers.UserController{},),),
 		beego.NSNamespace("/api/categories", beego.NSInclude( &controllers.CategoryController{},),),

@@ -7,6 +7,10 @@ import (
 
 var ()
 
+func AddCategory(c Category) (err error) {
+	conn.FirstOrCreate(&c, Category{Name: c.Name})
+	return
+}
 func GetAllCategories() (c []Category, err error) {
 	pagesize := 5
 	conn.Limit(pagesize).Find(&c)

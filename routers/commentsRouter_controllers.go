@@ -31,23 +31,31 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:DBController"] = append(beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:DBController"],
-		beego.ControllerComments{
-			Method: "InitDB",
-			Router: `/init`,
-			AllowHTTPMethods: []string{"get"},
-			MethodParams: param.Make(),
-			Params: nil})
-
-	beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:DBController"] = append(beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:DBController"],
+	beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:InitController"] = append(beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:InitController"],
 		beego.ControllerComments{
 			Method: "InitData",
-			Router: `/initdata`,
+			Router: `/data`,
 			AllowHTTPMethods: []string{"get"},
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:DBController"] = append(beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:DBController"],
+	beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:InitController"] = append(beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:InitController"],
+		beego.ControllerComments{
+			Method: "InitDB",
+			Router: `/db`,
+			AllowHTTPMethods: []string{"get"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:InitController"] = append(beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:InitController"],
+		beego.ControllerComments{
+			Method: "Droptable",
+			Router: `/droptable`,
+			AllowHTTPMethods: []string{"get"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:InitController"] = append(beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:InitController"],
 		beego.ControllerComments{
 			Method: "Test",
 			Router: `/test`,

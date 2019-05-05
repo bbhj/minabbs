@@ -5,7 +5,7 @@ import (
 	"github.com/astaxie/beego"
 )
 
-type DBController struct {
+type InitController struct {
 	beego.Controller
 }
 
@@ -13,8 +13,8 @@ type DBController struct {
 // @Param	uid		path 	string	true		"The key for staticblock"
 // @Success 200 {object} models.Article
 // @Failure 403 :uid is empty
-// @router /init [get]
-func (u *DBController) InitDB() {
+// @router /db [get]
+func (u *InitController) InitDB() {
 	beego.Info("===init db ==")
 
 	var msg models.RetMsg
@@ -35,8 +35,24 @@ func (u *DBController) InitDB() {
 // @Param	uid		path 	string	true		"The key for staticblock"
 // @Success 200 {object} models.Article
 // @Failure 403 :uid is empty
-// @router /initdata [get]
-func (u *DBController) InitData() {
+// @router /data [get]
+func (u *InitController) InitData() {
+
+
+	var c1 models.Category
+	c1.Name = "公告"
+	c1.Description = "公告信息"
+	
+	models.AddCategory(c1)
+
+
+	var a1 models.Article
+	a1.Title = "Hello, 欢迎使用本论坛！"
+	a1.Body = "这是第一个帖子"
+	a1.UserID = 1
+	// a1.Category = 1
+	models.AddArticle(a1)
+	// ====
 	var reply models.Reply
 
 	reply.Content = "回复测试Sed vel quisquam similique facilis fugit non."
@@ -50,13 +66,29 @@ func (u *DBController) InitData() {
 	u.Data["json"] = msg
 	u.ServeJSON()
 }
+
+// @Description get user by uid
+// @Param	uid		path 	string	true		"The key for staticblock"
+// @Success 200 {object} models.Article
+// @Failure 403 :uid is empty
+// @router /droptable [get]
+func (u *InitController) Droptable() {
+	models.Droptable()
+	// u.Data["json"] = msg
+	u.ServeJSON()
+}
+
+
+
 // @Description get user by uid
 // @Param	uid		path 	string	true		"The key for staticblock"
 // @Success 200 {object} models.Article
 // @Failure 403 :uid is empty
 // @router /test [get]
-func (u *DBController) Test() {
-	models.TestRelated()
+func (u *InitController) Test() {
+	models.GetUserProfile()
 	// u.Data["json"] = msg
 	u.ServeJSON()
 }
+
+

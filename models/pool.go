@@ -30,6 +30,7 @@ func Init() (flag bool, errmsg string) {
 	conn = conn.AutoMigrate(&Category{})
 	conn = conn.AutoMigrate(&Article{})
 	conn = conn.AutoMigrate(&Reply{})
+	conn = conn.AutoMigrate(&T1{}, &T2{})
 	// conn.Set("gorm:table_options", "CHARSET=utf8").AutoMigrate(&Volunteer{})
 	// conn.Set("gorm:table_options", "CHARSET=utf8").AutoMigrate(&WechatLoginScene{})
 
@@ -40,5 +41,11 @@ func Init() (flag bool, errmsg string) {
 		errmsg = fmt.Sprintf("%s", conn.Error)
 	}
 	beego.Info("models init info, status:", flag, ", errmsg:", conn.Error )
+	return
+}
+
+func Droptable() (flag bool, errmsg string) {
+	conn.DropTable(&Article{})
+	conn.DropTable(&Reply{})
 	return
 }

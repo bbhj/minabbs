@@ -97,8 +97,8 @@ type (
 
 	Category struct {
 		gorm.Model
-		Description string `json:"description"`
 		Name        string `json:"name"`
+		Description string `json:"description"`
 	}
 
 		// LastActivedAt string `json:"last_actived_at"`
