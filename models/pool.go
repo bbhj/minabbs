@@ -30,7 +30,6 @@ func Init() (flag bool, errmsg string) {
 	conn = conn.AutoMigrate(&Category{})
 	conn = conn.AutoMigrate(&Article{})
 	conn = conn.AutoMigrate(&Reply{})
-	conn = conn.AutoMigrate(&T1{}, &T2{})
 	// conn.Set("gorm:table_options", "CHARSET=utf8").AutoMigrate(&Volunteer{})
 	// conn.Set("gorm:table_options", "CHARSET=utf8").AutoMigrate(&WechatLoginScene{})
 

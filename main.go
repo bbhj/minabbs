@@ -7,6 +7,7 @@ import (
 	"github.com/astaxie/beego"
 	"path"
 	"os"
+	"time"
 )
 
 func main() {
@@ -16,6 +17,7 @@ func main() {
 	logfile := path.Join(logpath,  beego.BConfig.AppName + ".log")
 	beego.SetLogger("file", `{"filename":"` + logfile + `", "level":7,"maxlines":0,"maxsize":0,"daily":true,"maxdays":10}`)
 
+	models.StartTime = time.Now()
 	models.Connect()
 	defer models.Close()
 	beego.Info(beego.BConfig.AppName, "start...")

@@ -3,6 +3,8 @@ package controllers
 import (
 	"github.com/bbhj/minabbs/models"
 	"github.com/astaxie/beego"
+	"time"
+	"fmt"
 )
 
 type InitController struct {
@@ -86,8 +88,26 @@ func (u *InitController) Droptable() {
 // @Failure 403 :uid is empty
 // @router /test [get]
 func (u *InitController) Test() {
-	models.GetUserProfile()
+	msg, _ := models.GetAllBabyinfo()
+	u.Data["json"] = msg
+	u.ServeJSON()
+}
+
+
+// @Description get user by uid
+// @Param	uid		path 	string	true		"The key for staticblock"
+// @Success 200 {object} models.Article
+// @Failure 403 :uid is empty
+// @router /run [get]
+func (u *InitController) Run() {
+	cost := time.Since(models.StartTime)
+	beego.Error("======", cost)
+	costs := fmt.Sprintf("%v", cost)
+	// msg, _ := models.GetAllBabyinfo()
 	// u.Data["json"] = msg
+	// u.Data["json"] = map[string]time.Duration{"uptime": cost}
+	u.Data["json"] = map[string]string{"uptime": costs}
+	// u.Ctx.WriteString(costs)
 	u.ServeJSON()
 }
 

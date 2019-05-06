@@ -57,6 +57,14 @@ func init() {
 
 	beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:InitController"] = append(beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:InitController"],
 		beego.ControllerComments{
+			Method: "Run",
+			Router: `/run`,
+			AllowHTTPMethods: []string{"get"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:InitController"] = append(beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:InitController"],
+		beego.ControllerComments{
 			Method: "Test",
 			Router: `/test`,
 			AllowHTTPMethods: []string{"get"},
