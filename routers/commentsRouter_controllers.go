@@ -215,6 +215,22 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
+	beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:VolunteerController"] = append(beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:VolunteerController"],
+		beego.ControllerComments{
+			Method: "Post",
+			Router: `/`,
+			AllowHTTPMethods: []string{"Post"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:VolunteerController"] = append(beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:VolunteerController"],
+		beego.ControllerComments{
+			Method: "CheckVolunteer",
+			Router: `/check`,
+			AllowHTTPMethods: []string{"get"},
+			MethodParams: param.Make(),
+			Params: nil})
+
 	beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:WechatController"] = append(beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:WechatController"],
 		beego.ControllerComments{
 			Method: "CreateQRcode",
