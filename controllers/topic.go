@@ -63,7 +63,7 @@ func (u *TopicController) GetAll() {
 }
 
 // @Title Get
-// @Description get user by id
+// @Description get topic by id
 // @Param	id		path 	string	true		"The key for staticblock"
 // @Success 200 {object} models.User
 // @Failure 403 :id is empty
@@ -76,27 +76,26 @@ func (u *TopicController) Get() {
 	// json.Unmarshal([]byte(aa), &topic)
 
 	topic.Article, _ = models.GetArticle(topic_id)
+	beego.Error("========", topic.Article.ID)
 
-	topic.Category, _ = models.GetCategory(3)
-	// topic.TopReplies.Data, _ = models.GetAllReplies()
-	topic.User, _ = models.GetUser(topic.Article.UserID)
+	if 0 != topic.Article.ID {
+		topic.Category, _ = models.GetCategory(3)
+		// topic.TopReplies.Data, _ = models.GetAllReplies()
+		topic.User, _ = models.GetUser(topic.Article.UserID)
 
-	//	replies, _  :=  models.GetAllReplies()
-	replies, _ := models.GetRepliesByTopicID(topic_id)
-	var ru models.ReplyUser
-	for _, reply := range replies {
-		ru.Reply = reply
-		ru.User, _ = models.GetUser(reply.UserID)
-		topic.TopReplies.Data = append(topic.TopReplies.Data, ru)
+		// replies, _  :=  models.GetAllReplies()
+		replies, _ := models.GetRepliesByTopicID(topic_id)
+		var ru models.ReplyUser
+		for _, reply := range replies {
+			ru.Reply = reply
+			ru.User, _ = models.GetUser(reply.UserID)
+			topic.TopReplies.Data = append(topic.TopReplies.Data, ru)
+		}
+		if topic.TopReplies.Data == nil {
+			topic.TopReplies.Data = append(topic.TopReplies.Data, ru)
+		}
+
 	}
-	if (topic.TopReplies.Data == nil) {
-		topic.TopReplies.Data = append(topic.TopReplies.Data, ru)
-	}
-
-	// for i, _ := range topic.TopReplies.Data {
-	// 	beego.Error("index=====", i)
-	// 	topic.TopReplies.Data[i].User, _ = models.GetUser(topic.TopReplies.Data[i].UserID)
-	// }
 
 	u.Data["json"] = topic
 	u.ServeJSON()
