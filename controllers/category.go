@@ -7,15 +7,15 @@ import (
 	"github.com/astaxie/beego"
 )
 
-// Operations about Users
+// Operations about Category
 type CategoryController struct {
 	beego.Controller
 }
 
-// @Title CreateUser
+// @Title Create Category
 // @Description create users
-// @Param	body		body 	models.User	true		"body for user content"
-// @Success 200 {int} models.User.Id
+// @Param	body		body 	models.Category		true		"body for category content"
+// @Success 200 {int} models.Category.Id
 // @Failure 403 body is empty
 // @router / [post]
 func (u *CategoryController) Post() {
@@ -23,8 +23,8 @@ func (u *CategoryController) Post() {
 }
 
 // @Title GetAll
-// @Description get all Users
-// @Success 200 {object} models.User
+// @Description get all Categories
+// @Success 200 {object} models.Category
 // @router / [get]
 func (u *CategoryController) GetAll() {
 	ulist, _ := models.GetAllCategories()

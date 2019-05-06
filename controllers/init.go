@@ -13,7 +13,7 @@ type InitController struct {
 
 // @Title Init Controller
 // @Description Init tables
-// @Param	
+// @Param	uid		path 	string	true		"The key for staticblock"
 // @Success 200 {object} models.RetMsg
 // @Failure 403 
 // @router /db [get]
@@ -36,7 +36,7 @@ func (u *InitController) InitDB() {
 
 // @Title Init data
 // @Description Init base data
-// @Param
+// @Param	uid		path 	string	true		"The key for staticblock"
 // @Success 200 {object} models.Article
 // @Failure 403 :uid is empty
 // @router /data [get]
@@ -69,6 +69,7 @@ func (u *InitController) InitData() {
 	u.ServeJSON()
 }
 
+// @Title Drop table
 // @Description get user by uid
 // @Param	uid		path 	string	true		"The key for staticblock"
 // @Success 200 {object} models.Article
@@ -84,7 +85,7 @@ func (u *InitController) Droptable() {
 
 // @Title Init test
 // @Description test some function
-// @Para
+// @Param	uid		path 	string	true		"The key for staticblock"
 // @Success 200 {object} models.Babyinfo
 // @Failure 403
 // @router /test [get]
@@ -97,8 +98,8 @@ func (u *InitController) Test() {
 
 // @Title Uptime
 // @Description App's uptime
-// @Param
-// @Success 200 {object}
+// @Param	uid		path 	string	true		"The key for staticblock"
+// @Success 200 {object} models.Babyinfo
 // @Failure 403
 // @router /run [get]
 func (u *InitController) Run() {

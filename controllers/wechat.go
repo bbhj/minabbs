@@ -17,14 +17,13 @@ import (
 
 //  /getphonenum  获取微信授权手机号
 
-// https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=ACCESS_TOKEN
-// Operations about Articles
+// Operations about WechatApi
 type WechatController struct {
 	beego.Controller
 }
 
-// @Title CreateArticle
-// @Description create users
+// @Title Create Wechat QR Code
+// @Description create QR Code
 // @Param	body		body 	models.Article	true		"body for user content"
 // @Success 200 {int} models.Article.Id
 // @Failure 403 body is empty

@@ -7,15 +7,15 @@ import (
 	"github.com/astaxie/beego"
 )
 
-// Operations about Users
+// Operations about Topics
 type TopicController struct {
 	beego.Controller
 }
 
-// @Title CreateUser
-// @Description create users
-// @Param	body		body 	models.User	true		"body for user content"
-// @Success 200 {int} models.User.Id
+// @Title Create Topic
+// @Description create topics
+// @Param	body		body 	models.Topic 	true		"body for Topic content"
+// @Success 200 {int} models.Topic
 // @Failure 403 body is empty
 // @router / [post]
 func (u *TopicController) Post() {
@@ -29,8 +29,8 @@ func (u *TopicController) Post() {
 }
 
 // @Title GetAll
-// @Description get all Users
-// @Success 200 {object} models.User
+// @Description get all Topics
+// @Success 200 {object} models.Topic
 // @router / [get]
 func (u *TopicController) GetAll() {
 	page := u.GetString("page")

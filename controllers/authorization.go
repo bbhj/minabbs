@@ -9,13 +9,13 @@ import (
 	"github.com/imroc/req"
 )
 
-// Operations about Users
+// Operations about Authorization
 type AuthorizationController struct {
 	beego.Controller
 }
 
-// @Title CreateUser
-// @Description create users
+// @Title Wechat User Login
+// @Description Wechat Auth
 // @Param	body		body 	models.User	true		"body for user content"
 // @Success 200 {int} models.User.Id
 // @Failure 403 body is empty
