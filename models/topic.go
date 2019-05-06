@@ -1,7 +1,7 @@
 package models
 
 import (
-	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm"
 )
 
 func init() {
@@ -33,13 +33,6 @@ type (
 	TopicReplies struct {
 		Replies
 		Meta `json:"meta"`
-	}
-
-	Reply struct {
-		gorm.Model
-		Content   string `json:"content"`
-		TopicID   int    `json:"topic_id"`
-		UserID    int `json:"user_id"`
 	}
 
 	ReplyUser struct {

@@ -34,43 +34,6 @@ type (
 		Meta `json:"meta"`
 	}
 
-	Article1 struct {
-		gorm.Model
-		Body            string `json:"body"`
-		Category        `json:"category"`
-		CategoryID      int         `json:"category_id"`
-		Excerpt         string      `json:"excerpt"`
-		LastReplyUserID int         `json:"last_reply_user_id"`
-		ReplyCount      int         `json:"reply_count"`
-		Slug		string 	    `json:"slug"`
-		Title           string      `json:"title"`
-		User		User	`gorm:"FOREIGNKEY:UserID;ASSOCIATION_FOREIGNKEY:ID"`
-		UserID          int `json:"user_id"`
-		ViewCount       int `json:"view_count"`
-		TopReplies      Replies `json:"topReplies"`
-	}
-
-	Article struct {
-		gorm.Model
-		Body            string `json:"body"`
-		CategoryID      int         `json:"category_id"`
-		Excerpt         string      `json:"excerpt"`
-		LastReplyUserID int         `json:"last_reply_user_id"`
-		ReplyCount      int         `json:"reply_count"`
-		Slug		string 	    `json:"slug"`
-		Title           string      `json:"title"`
-		UserID          int `json:"user_id"`
-		ViewCount       int `json:"view_count"`
-	}
-
-		// TopReplies      Replies `json:"topReplies"`
-	Article2 struct {
-		Article
-		Category        `json:"category"`
-		User		User	`json:"user"`
-		TopReplies      Replies `json:"topReplies"`
-	}
-
 	Topic struct {
 		Article
 		Category        `json:"category"`
@@ -89,16 +52,6 @@ type (
 			Total       int         `json:"total"`
 			TotalPages  int         `json:"total_pages"`
 		} `json:"pagination"`
-	}
-
-	Categories struct {
-		Data []Category `json:"data"`
-	}
-
-	Category struct {
-		gorm.Model
-		Name        string `json:"name"`
-		Description string `json:"description"`
 	}
 
 		// LastActivedAt string `json:"last_actived_at"`

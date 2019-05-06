@@ -33,6 +33,6 @@ type (
 		ExpiresIn     int    `json:"expires_in"`
 		RefreshToken  string `json:"refresh_token"`
 		Scope         string `json:"scope"`
-		SessionKey    string `json:"session_key"` // 小程序登录session_key
+		SessionKey    string `json:"session_key"` // wechat login session_key
 	}
 )

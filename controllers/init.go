@@ -11,10 +11,11 @@ type InitController struct {
 	beego.Controller
 }
 
-// @Description get user by uid
-// @Param	uid		path 	string	true		"The key for staticblock"
-// @Success 200 {object} models.Article
-// @Failure 403 :uid is empty
+// @Title Init Controller
+// @Description Init tables
+// @Param	
+// @Success 200 {object} models.RetMsg
+// @Failure 403 
 // @router /db [get]
 func (u *InitController) InitDB() {
 	beego.Info("===init db ==")
@@ -33,18 +34,17 @@ func (u *InitController) InitDB() {
 	u.ServeJSON()
 }
 
-// @Description get user by uid
-// @Param	uid		path 	string	true		"The key for staticblock"
+// @Title Init data
+// @Description Init base data
+// @Param
 // @Success 200 {object} models.Article
 // @Failure 403 :uid is empty
 // @router /data [get]
 func (u *InitController) InitData() {
 
-
 	var c1 models.Category
 	c1.Name = "公告"
 	c1.Description = "公告信息"
-	
 	models.AddCategory(c1)
 
 
@@ -54,9 +54,9 @@ func (u *InitController) InitData() {
 	a1.UserID = 1
 	// a1.Category = 1
 	models.AddArticle(a1)
-	// ====
-	var reply models.Reply
 
+
+	var reply models.Reply
 	reply.Content = "回复测试Sed vel quisquam similique facilis fugit non."
 	reply.TopicID = 5
 	reply.UserID = 2
@@ -82,10 +82,11 @@ func (u *InitController) Droptable() {
 
 
 
-// @Description get user by uid
-// @Param	uid		path 	string	true		"The key for staticblock"
-// @Success 200 {object} models.Article
-// @Failure 403 :uid is empty
+// @Title Init test
+// @Description test some function
+// @Para
+// @Success 200 {object} models.Babyinfo
+// @Failure 403
 // @router /test [get]
 func (u *InitController) Test() {
 	msg, _ := models.GetAllBabyinfo()
@@ -94,10 +95,11 @@ func (u *InitController) Test() {
 }
 
 
-// @Description get user by uid
-// @Param	uid		path 	string	true		"The key for staticblock"
-// @Success 200 {object} models.Article
-// @Failure 403 :uid is empty
+// @Title Uptime
+// @Description App's uptime
+// @Param
+// @Success 200 {object}
+// @Failure 403
 // @router /run [get]
 func (u *InitController) Run() {
 	cost := time.Since(models.StartTime)
@@ -110,5 +112,3 @@ func (u *InitController) Run() {
 	// u.Ctx.WriteString(costs)
 	u.ServeJSON()
 }
-
-

@@ -2,11 +2,18 @@ package models
 
 import (
 	_ "errors"
-	_ "github.com/jinzhu/gorm"
+	"github.com/jinzhu/gorm"
 	_ "github.com/astaxie/beego"
 )
 
-var ()
+type (
+	Reply struct {
+		gorm.Model
+		Content   string `json:"content"`
+		TopicID   int    `json:"topic_id"`
+		UserID    int `json:"user_id"`
+	}
+)
 
 func AddReply(a Reply) (err error) {
 	conn.Save(&a)

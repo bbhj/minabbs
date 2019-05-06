@@ -2,10 +2,20 @@ package models
 
 import (
 	_ "errors"
-	_ "github.com/jinzhu/gorm"
+	"github.com/jinzhu/gorm"
 )
 
-var ()
+type (
+        Categories struct {
+                Data []Category `json:"data"`
+        }
+
+        Category struct {
+                gorm.Model
+                Name        string `json:"name"`
+                Description string `json:"description"`
+        }
+)
 
 func AddCategory(c Category) (err error) {
 	conn.FirstOrCreate(&c, Category{Name: c.Name})
