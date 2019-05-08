@@ -19,6 +19,7 @@ FROM centos
 
 # Copy the binary from the builder stage
 COPY --from=0 /go/src/github.com/bbhj/minabbs/main /srv/
+COPY --from=0 /go/src/github.com/bbhj/minabbs/keys /srv/
 
 EXPOSE 8080
 
