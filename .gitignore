@@ -1,6 +1,5 @@
 conf/*
 test/conf/*
-keys/
 crontab/
 nohup.out
 baobeihuijia
