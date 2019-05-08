@@ -15,6 +15,14 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
+	beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:AuthorizationController"] = append(beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:AuthorizationController"],
+		beego.ControllerComments{
+			Method: "Token",
+			Router: `/token`,
+			AllowHTTPMethods: []string{"get"},
+			MethodParams: param.Make(),
+			Params: nil})
+
 	beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:CategoryController"] = append(beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:CategoryController"],
 		beego.ControllerComments{
 			Method: "Post",

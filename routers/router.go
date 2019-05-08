@@ -11,9 +11,20 @@ import (
 	"github.com/bbhj/minabbs/controllers"
 
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/context"
 )
 
 func init() {
+	beego.InsertFilter("/*", beego.BeforeRouter, func(ctx *context.Context) {
+		// et := jwtbeego.EasyToken{}
+		// valido, _, _ := et.ValidateToken(tokenString)
+		// if !valido {
+		// 	c.Ctx.Output.SetStatus(401)
+		// 	c.Data["json"] = "Permission Deny"
+		// 	c.ServeJSON()
+		// }
+	})
+
 	ns := beego.NewNamespace("/v1",
 		beego.NSNamespace("/init", beego.NSInclude(&controllers.InitController{})),
 		beego.NSNamespace("/api/user", beego.NSInclude( &controllers.UserController{},),),

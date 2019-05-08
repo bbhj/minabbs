@@ -1,12 +1,13 @@
 package controllers
 
 import (
-	"time"
 	"encoding/json"
 	"github.com/bbhj/minabbs/models"
+	"time"
 
 	"github.com/astaxie/beego"
 	"github.com/imroc/req"
+	"github.com/juusechec/jwt-beego"
 )
 
 // Operations about Authorization
@@ -49,4 +50,32 @@ func (u *AuthorizationController) Post() {
 	// models.AddWechatLoginScene(scene)
 	u.Data["json"] = profile
 	u.ServeJSON()
+}
+
+// @Title Wechat User auth
+// @Description Wechat Auth
+// @Param	body		body 	models.User	true		"body for user content"
+// @Success 200 {int} models.User.Id
+// @Failure 403 body is empty
+// @router /token [get]
+func (u *AuthorizationController) Token() {
+	et := jwtbeego.EasyToken{
+		Username: "dean",
+		Expires:  time.Now().Unix() + 3600, //Segundos
+	}
+	tokenString, _ := et.GetToken()
+
+
+	et1 := jwtbeego.EasyToken{}
+	valido, _, _ := et1.ValidateToken(tokenString)
+	beego.Error("=======valido======", valido)
+	if !valido {
+		u.Ctx.Output.SetStatus(401)
+		u.Data["json"] = "Permission Deny"
+		u.ServeJSON()
+	}
+
+	u.Data["json"] = "{'tokenString': '" + tokenString + "'}"
+	u.ServeJSON()
+	return
 }
