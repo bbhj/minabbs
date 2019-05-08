@@ -15,7 +15,12 @@ import (
 )
 
 func init() {
-	beego.InsertFilter("/*", beego.BeforeRouter, func(ctx *context.Context) {
+	var FilterUser = func(ctx *context.Context) {
+		// _, ok := ctx.Input.Session("uid").(int)
+		// if !ok && ctx.Request.RequestURI != "/login" {
+		// 	ctx.Redirect(302, "/login")
+		// }
+
 		// et := jwtbeego.EasyToken{}
 		// valido, _, _ := et.ValidateToken(tokenString)
 		// if !valido {
@@ -23,17 +28,19 @@ func init() {
 		// 	c.Data["json"] = "Permission Deny"
 		// 	c.ServeJSON()
 		// }
-	})
+	}
+
+	beego.InsertFilter("/*", beego.BeforeRouter, FilterUser)
 
 	ns := beego.NewNamespace("/v1",
 		beego.NSNamespace("/init", beego.NSInclude(&controllers.InitController{})),
-		beego.NSNamespace("/api/user", beego.NSInclude( &controllers.UserController{},),),
-		beego.NSNamespace("/api/users", beego.NSInclude( &controllers.UserController{},),),
-		beego.NSNamespace("/api/categories", beego.NSInclude( &controllers.CategoryController{},),),
-		beego.NSNamespace("/api/topics", beego.NSInclude( &controllers.TopicController{},),),
-		beego.NSNamespace("/api/weapp/authorizations", beego.NSInclude( &controllers.AuthorizationController{},),),
-		beego.NSNamespace("/api/weapp/users", beego.NSInclude( &controllers.UserController{},),),
-		beego.NSNamespace("/api/wechat", beego.NSInclude( &controllers.WechatController{},),),
+		beego.NSNamespace("/api/user", beego.NSInclude(&controllers.UserController{})),
+		beego.NSNamespace("/api/users", beego.NSInclude(&controllers.UserController{})),
+		beego.NSNamespace("/api/categories", beego.NSInclude(&controllers.CategoryController{})),
+		beego.NSNamespace("/api/topics", beego.NSInclude(&controllers.TopicController{})),
+		beego.NSNamespace("/api/weapp/authorizations", beego.NSInclude(&controllers.AuthorizationController{})),
+		beego.NSNamespace("/api/weapp/users", beego.NSInclude(&controllers.UserController{})),
+		beego.NSNamespace("/api/wechat", beego.NSInclude(&controllers.WechatController{})),
 	)
 	beego.AddNamespace(ns)
 }
