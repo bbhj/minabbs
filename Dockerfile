@@ -23,4 +23,5 @@ COPY --from=0 /go/src/github.com/bbhj/minabbs/keys /srv/keys
 
 EXPOSE 8080
 
-CMD ["cd /srv/ && ./main"]
+WORKDIR  /srv
+CMD ["/srv/main"]
