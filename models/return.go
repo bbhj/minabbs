@@ -9,3 +9,16 @@ type RetMsg struct {
 	Errmsg string `json:"errmsg"` // 当 Status 非 0 时，返回错误信息
 	Data   string `json:"data"`  // 返回用户所需数据
 }
+type (
+
+	State struct {
+		Code int `json:"code"`
+		Status string `json:"status"`
+		Message string `json:"message"`
+	}
+
+	RetDataList struct {
+		State State `json:"State"`
+		Data interface{} `json:"data"`  // 返回用户所需数据
+	}
+)

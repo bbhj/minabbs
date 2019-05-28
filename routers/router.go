@@ -37,6 +37,7 @@ func init() {
 		beego.NSNamespace("/api/user", beego.NSInclude(&controllers.UserController{})),
 		beego.NSNamespace("/api/users", beego.NSInclude(&controllers.UserController{})),
 		beego.NSNamespace("/api/categories", beego.NSInclude(&controllers.CategoryController{})),
+		beego.NSNamespace("/api/lost", beego.NSInclude(&controllers.LostController{})),
 		beego.NSNamespace("/api/topics", beego.NSInclude(&controllers.TopicController{})),
 		beego.NSNamespace("/api/weapp/authorizations", beego.NSInclude(&controllers.AuthorizationController{})),
 		beego.NSNamespace("/api/weapp/users", beego.NSInclude(&controllers.UserController{})),
