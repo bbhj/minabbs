@@ -41,6 +41,10 @@ type (
 		Height         string
 		SyncStatus     int `gorm:"column:syncstatus;default:0"`
 	}
+
+	SearchBabyinfo struct {
+		Keywords string `json:"keywords"`
+	}
 )
 
 func GetAllBabyinfo() (data []Babyinfo, err error) {

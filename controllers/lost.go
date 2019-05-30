@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"encoding/json"
 	"github.com/astaxie/beego"
 	"github.com/bbhj/minabbs/models"
 )
@@ -47,6 +48,30 @@ func (u *LostController) Get() {
 	ret.State.Message = ""
 
 	ret.Data = info
+	u.Data["json"] = ret
+	u.ServeJSON()
+}
+
+// @Title Search lost info
+// @Description get lost info by id
+// @Param	id		path 	string	true		"The key for staticblock"
+// @Success 200 {object} models.User
+// @Failure 403 :id is empty
+// @router /search [post]
+func (u *LostController) Search() {
+
+	var condition models.SearchBabyinfo
+	json.Unmarshal(u.Ctx.Input.RequestBody, &condition)
+
+	beego.Error(condition)
+	ulist, _ := models.GetAllBabyinfo()
+
+	var ret models.RetDataList
+	ret.State.Code = 200
+	ret.State.Status = "success"
+	ret.State.Message = ""
+
+	ret.Data = ulist
 	u.Data["json"] = ret
 	u.ServeJSON()
 }

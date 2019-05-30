@@ -106,6 +106,15 @@ func init() {
             Filters: nil,
             Params: nil})
 
+    beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:LostController"] = append(beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:LostController"],
+        beego.ControllerComments{
+            Method: "Search",
+            Router: `/search`,
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
     beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:TopicController"] = append(beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:TopicController"],
         beego.ControllerComments{
             Method: "Post",
