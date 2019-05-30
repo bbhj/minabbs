@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"github.com/bbhj/minabbs/models"
 	"github.com/astaxie/beego"
+	"github.com/bbhj/minabbs/models"
 )
 
 // Operations about Users
@@ -20,25 +20,33 @@ func (u *LostController) GetAll() {
 	// var state models.State
 	var ret models.RetDataList
 	ret.State.Code = 200
-	ret.State.Status= "success"
+	ret.State.Status = "success"
 	ret.State.Message = ""
 
 	// u.Data["json"] = map[string]string{"State": state}
 	ret.Data = ulist
 	u.Data["json"] = ret
-	
+
 	u.ServeJSON()
 }
 
 // @Title Get
-// @Description get user by uid
-// @Param	uid		path 	string	true		"The key for staticblock"
+// @Description get lost info by id
+// @Param	id		path 	string	true		"The key for staticblock"
 // @Success 200 {object} models.User
-// @Failure 403 :uid is empty
-// @router /:uid [get]
+// @Failure 403 :id is empty
+// @router /detail/:id [get]
 func (u *LostController) Get() {
 
-	uid, _ := u.GetInt(":uid")
-	beego.Error("=====uid", uid)
+	id, _ := u.GetInt(":id")
+	info, _ := models.GetBabyinfoById(id)
+
+	var ret models.RetDataList
+	ret.State.Code = 200
+	ret.State.Status = "success"
+	ret.State.Message = ""
+
+	ret.Data = info
+	u.Data["json"] = ret
 	u.ServeJSON()
 }

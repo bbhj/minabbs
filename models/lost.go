@@ -18,7 +18,7 @@ type (
 		AvatarUrl string
 		Nickname  string
 		// 0: unkown,  1: male   2: female
-		Gender uint
+		Gender          uint
 		Title           string
 		Subject         string
 		Characters      string
@@ -39,13 +39,17 @@ type (
 		Babyid         string
 		Category       string
 		Height         string
-		SyncStatus     int	`gorm:"column:syncstatus;default:0"`
+		SyncStatus     int `gorm:"column:syncstatus;default:0"`
 	}
-
 )
 
 func GetAllBabyinfo() (data []Babyinfo, err error) {
 	pagesize := 10
 	conn.Limit(pagesize).Find(&data)
+	return
+}
+
+func GetBabyinfoById(id int) (data Babyinfo, err error) {
+	conn.Find(&data, "id = ?", id)
 	return
 }

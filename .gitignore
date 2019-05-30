@@ -12,3 +12,5 @@ lastupdate.tmp
 routers/commentsRouter__*.go
 vendor/*
 swagger/*
+.idea
+.DS_Store

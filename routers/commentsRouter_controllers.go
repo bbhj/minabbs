@@ -100,7 +100,7 @@ func init() {
     beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:LostController"] = append(beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:LostController"],
         beego.ControllerComments{
             Method: "Get",
-            Router: `/:uid`,
+            Router: `/detail/:id`,
             AllowHTTPMethods: []string{"get"},
             MethodParams: param.Make(),
             Filters: nil,
