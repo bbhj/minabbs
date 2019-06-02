@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	_ "encoding/json"
 	"encoding/base64"
+	_ "encoding/json"
 	_ "reflect"
 
 	_ "fmt"
@@ -34,15 +34,16 @@ func (u *WechatController) CreateQRcode() {
 	var qrret models.QRCodeReturn
 
 	params.AccessToken = wechat.GetAccessToken()
+	beego.Info("access_token:", params.AccessToken)
 	params.Page = "/pages/home/main"
 	params.Scene = "uuid=1111111111111111"
 	apiurl := "https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=" + params.AccessToken
 
 	param := req.Param{
 		// "access_token": wechat.GetAccessToken(),
-		"page":  "pages/profile/main",
-		"scene": "forward?user=1111",
-		"width": 430,
+		"page":       "pages/profile/main",
+		"scene":      "forward?user=1111",
+		"width":      430,
 		"auto_color": false,
 		"is_hyaline": false,
 	}
@@ -60,7 +61,7 @@ func (u *WechatController) CreateQRcode() {
 	if qrret.Errcode != 0 {
 		beego.Error("get qr code from wechat failed, ", ret)
 		ret.Status = -1
-        	ret.Errcode= qrret.Errcode
+		ret.Errcode = qrret.Errcode
 		ret.Errmsg = qrret.Errmsg
 
 		u.Data["json"] = ret

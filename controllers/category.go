@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"github.com/bbhj/minabbs/models"
 	_ "encoding/json"
+	"github.com/bbhj/minabbs/models"
 
 	"github.com/astaxie/beego"
 )
@@ -25,7 +25,7 @@ func (u *CategoryController) Post() {
 // @Title GetAll
 // @Description get all Categories
 // @Success 200 {object} models.Category
-// @router / [get]
+// @router /list [get]
 func (u *CategoryController) GetAll() {
 	ulist, _ := models.GetAllCategories()
 	var c models.Categories
