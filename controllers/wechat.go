@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"encoding/base64"
+	"encoding/json"
 	_ "encoding/json"
 	_ "reflect"
 
@@ -33,15 +34,14 @@ func (u *WechatController) CreateQRcode() {
 	var params models.QRCodeRequestParms
 	var qrret models.QRCodeReturn
 
-	params.AccessToken = wechat.GetAccessToken()
-	beego.Info("access_token:", params.AccessToken)
-	params.Page = "/pages/home/main"
-	params.Scene = "uuid=1111111111111111"
-	apiurl := "https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=" + params.AccessToken
+	json.Unmarshal(u.Ctx.Input.RequestBody, &params)
+	beego.Error(params)
+
+	apiurl := "https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=" + wechat.GetAccessToken()
 
 	param := req.Param{
 		// "access_token": wechat.GetAccessToken(),
-		"page":       "pages/profile/main",
+		"page":       params.Page,
 		"scene":      "forward?user=1111",
 		"width":      430,
 		"auto_color": false,

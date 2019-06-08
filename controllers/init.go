@@ -1,10 +1,10 @@
 package controllers
 
 import (
-	"github.com/bbhj/minabbs/models"
-	"github.com/astaxie/beego"
-	"time"
 	"fmt"
+	"github.com/astaxie/beego"
+	"github.com/bbhj/minabbs/models"
+	"time"
 )
 
 type InitController struct {
@@ -15,13 +15,13 @@ type InitController struct {
 // @Description Init tables
 // @Param	uid		path 	string	true		"The key for staticblock"
 // @Success 200 {object} models.RetMsg
-// @Failure 403 
+// @Failure 403
 // @router /db [get]
 func (u *InitController) InitDB() {
 	beego.Info("===init db ==")
 
 	var msg models.RetMsg
-	flag, dbmsg :=  models.Init() 
+	flag, dbmsg := models.Init()
 	msg.Data = dbmsg
 	if flag {
 		msg.Status = 0
@@ -47,14 +47,12 @@ func (u *InitController) InitData() {
 	c1.Description = "公告信息"
 	models.AddCategory(c1)
 
-
 	var a1 models.Article
 	a1.Title = "Hello, 欢迎使用本论坛！"
 	a1.Body = "这是第一个帖子"
 	a1.UserID = 1
 	// a1.Category = 1
 	models.AddArticle(a1)
-
 
 	var reply models.Reply
 	reply.Content = "回复测试Sed vel quisquam similique facilis fugit non."
@@ -80,21 +78,6 @@ func (u *InitController) Droptable() {
 	// u.Data["json"] = msg
 	u.ServeJSON()
 }
-
-
-
-// @Title Init test
-// @Description test some function
-// @Param	uid		path 	string	true		"The key for staticblock"
-// @Success 200 {object} models.Babyinfo
-// @Failure 403
-// @router /test [get]
-func (u *InitController) Test() {
-	msg, _ := models.GetAllBabyinfo()
-	u.Data["json"] = msg
-	u.ServeJSON()
-}
-
 
 // @Title Uptime
 // @Description App's uptime

@@ -16,7 +16,28 @@ type LostController struct {
 // @Success 200 {object} models.User
 // @router / [get]
 func (u *LostController) GetAll() {
-	ulist, _ := models.GetAllBabyinfo()
+	// var state models.State
+	var ret models.RetDataList
+	ret.State.Code = 200
+	ret.State.Status = "success"
+	ret.State.Message = ""
+
+	u.Data["json"] = ret
+
+	u.ServeJSON()
+}
+
+// @Title GetAll
+// @Description get all Users
+// @Success 200 {object} models.User
+// @router /list [get]
+func (u *LostController) List() {
+	category, _ := u.GetInt("category")
+	page, _ := u.GetInt("page")
+	pageSize, _ := u.GetInt("pageSize")
+
+	beego.Error("=======", category, page, pageSize)
+	ulist, _ := models.GetAllBabyinfo(category, page, pageSize)
 	u.Data["json"] = ulist
 	// var state models.State
 	var ret models.RetDataList
@@ -64,7 +85,7 @@ func (u *LostController) Search() {
 	json.Unmarshal(u.Ctx.Input.RequestBody, &condition)
 
 	beego.Error(condition)
-	ulist, _ := models.GetAllBabyinfo()
+	ulist, _ := models.GetAllBabyinfoByCondition(condition.Keywords)
 
 	var ret models.RetDataList
 	ret.State.Code = 200

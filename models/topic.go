@@ -37,6 +37,6 @@ type (
 
 	ReplyUser struct {
 		Reply
-		User      `json:"user"`
+		User `json:"user"`
 	}
 )

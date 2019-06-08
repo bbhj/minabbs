@@ -14,15 +14,15 @@ func init() {
 
 type (
 	Profile struct {
-		Openid  string
+		Openid      string
 		AccessToken string
-		UserID	uint
+		UserID      uint
 	}
-		// Openid  string `json:"Openid"`
-		// AccessToken string `json:"AccessToken"`
-		// UserID	uint	`json:"UserID"`
-		// AccessToken string `json:"access_token"`
-		// UserID	uint	`json:"user_id"`
+	// Openid  string `json:"Openid"`
+	// AccessToken string `json:"AccessToken"`
+	// UserID	uint	`json:"UserID"`
+	// AccessToken string `json:"access_token"`
+	// UserID	uint	`json:"user_id"`
 
 	UserReply struct {
 		Data []Article `json:"data"`
@@ -36,12 +36,12 @@ type (
 
 	Topic struct {
 		Article
-		Category        `json:"category"`
-		User		User	`json:"user"`
-		TopReplies      Replies `json:"topReplies"`
+		Category   `json:"category"`
+		User       User    `json:"user"`
+		TopReplies Replies `json:"topReplies"`
 	}
 
-		// TopReplies      Replies `json:"topReplies"`
+	// TopReplies      Replies `json:"topReplies"`
 
 	Meta struct {
 		Pagination struct {
@@ -54,21 +54,21 @@ type (
 		} `json:"pagination"`
 	}
 
-		// LastActivedAt string `json:"last_actived_at"`
+	// LastActivedAt string `json:"last_actived_at"`
 	User struct {
 		gorm.Model
-		Avatar        string `json:"avatar"`
-		BoundPhone    string `json:"phone"`
-		BoundWechat   string `json:"openid"`
-		Email         string `json:"email"`
-		Introduction  string `json:"introduction"`
+		Avatar        string    `json:"avatar"`
+		BoundPhone    string    `json:"phone"`
+		BoundWechat   string    `json:"openid"`
+		Email         string    `json:"email"`
+		Introduction  string    `json:"introduction"`
 		LastActivedAt time.Time `sql:"DEFAULT:current_timestamp"`
-		Name          string `json:"name"`
-		NickName          string `json:"nickName"`
+		Name          string    `json:"name"`
+		NickName      string    `json:"nickName"`
 	}
-		// CreatedAt     string `json:"created_at"`
-		// ID            int    `json:"id"`
-		// UpdatedAt     string `json:"updated_at"`
+	// CreatedAt     string `json:"created_at"`
+	// ID            int    `json:"id"`
+	// UpdatedAt     string `json:"updated_at"`
 )
 
 func AddUser(u User) (err error) {
@@ -84,7 +84,7 @@ func UpdateUser(u User) (user User, err error) {
 	return
 }
 
-func AddUserByWechat(openid string) ( user User, err error) {
+func AddUserByWechat(openid string) (user User, err error) {
 	conn.FirstOrCreate(&user, User{BoundWechat: openid})
 	return
 }
@@ -95,11 +95,10 @@ func GetAllUsers() (u []User, err error) {
 	return
 }
 
-
 func GetUser(uid int) (u User, err error) {
 	conn.First(&u, uid)
-	if ( conn.Error != nil && conn.RowsAffected > 0 ) {
-	 	err = nil
+	if conn.Error != nil && conn.RowsAffected > 0 {
+		err = nil
 	}
 	return
 }

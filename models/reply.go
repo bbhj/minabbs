@@ -2,16 +2,16 @@ package models
 
 import (
 	_ "errors"
-	"github.com/jinzhu/gorm"
 	_ "github.com/astaxie/beego"
+	"github.com/jinzhu/gorm"
 )
 
 type (
 	Reply struct {
 		gorm.Model
-		Content   string `json:"content"`
-		TopicID   int    `json:"topic_id"`
-		UserID    int `json:"user_id"`
+		Content string `json:"content"`
+		TopicID int    `json:"topic_id"`
+		UserID  int    `json:"user_id"`
 	}
 )
 
@@ -35,8 +35,8 @@ func GetRepliesByTopicID(topic_id int) (replies []Reply, err error) {
 
 func GetReply(id int) (c Reply, err error) {
 	conn.First(&c, id)
-	if ( conn.Error != nil && conn.RowsAffected > 0 ) {
-	 	err = nil
+	if conn.Error != nil && conn.RowsAffected > 0 {
+		err = nil
 	}
 	return
 }

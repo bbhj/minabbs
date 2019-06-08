@@ -6,15 +6,15 @@ import (
 )
 
 type (
-        Categories struct {
-                Data []Category `json:"data"`
-        }
+	Categories struct {
+		Data []Category `json:"data"`
+	}
 
-        Category struct {
-                gorm.Model
-                Name        string `json:"name"`
-                Description string `json:"description"`
-        }
+	Category struct {
+		gorm.Model
+		Name        string `json:"name"`
+		Description string `json:"description"`
+	}
 )
 
 func AddCategory(c Category) (err error) {
@@ -27,11 +27,10 @@ func GetAllCategories() (c []Category, err error) {
 	return
 }
 
-
 func GetCategory(id int) (c Category, err error) {
 	conn.First(&c, id)
-	if ( conn.Error != nil && conn.RowsAffected > 0 ) {
-	 	err = nil
+	if conn.Error != nil && conn.RowsAffected > 0 {
+		err = nil
 	}
 	return
 }

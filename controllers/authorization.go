@@ -65,7 +65,6 @@ func (u *AuthorizationController) Token() {
 	}
 	tokenString, _ := et.GetToken()
 
-
 	et1 := jwtbeego.EasyToken{}
 	valido, _, _ := et1.ValidateToken(tokenString)
 	beego.Error("=======valido======", valido)

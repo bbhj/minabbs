@@ -47,13 +47,24 @@ type (
 	}
 )
 
-func GetAllBabyinfo() (data []Babyinfo, err error) {
-	pagesize := 10
-	conn.Limit(pagesize).Find(&data)
+//func GetAllBabyinfo() (data []Babyinfo, err error) {
+//	pagesize := 10
+//	conn.Limit(pagesize).Find(&data)
+//	return
+//}
+
+func GetAllBabyinfo(category, page, pageSize int) (data []Babyinfo, err error) {
+	conn.Limit(pageSize).Offset(page * pageSize).Find(&data)
 	return
 }
 
 func GetBabyinfoById(id int) (data Babyinfo, err error) {
 	conn.Find(&data, "id = ?", id)
+	return
+}
+
+func GetAllBabyinfoByCondition(nickname string) (data []Babyinfo, err error) {
+	pageSize := 10
+	conn.Where("nickname  LIKE ?", "%"+nickname+"%").Limit(pageSize).Find(&data)
 	return
 }

@@ -5,5 +5,5 @@ import (
 )
 
 var (
-  StartTime time.Time
+	StartTime time.Time
 )

@@ -2,8 +2,8 @@ package models
 
 import (
 	_ "errors"
-	"github.com/jinzhu/gorm"
 	"github.com/astaxie/beego"
+	"github.com/jinzhu/gorm"
 )
 
 type (
@@ -11,37 +11,37 @@ type (
 		gorm.Model
 		Body            string `json:"body"`
 		Category        `json:"category"`
-		CategoryID      int         `json:"category_id"`
-		Excerpt         string      `json:"excerpt"`
-		LastReplyUserID int         `json:"last_reply_user_id"`
-		ReplyCount      int         `json:"reply_count"`
-		Slug		string 	    `json:"slug"`
-		Title           string      `json:"title"`
-		User		User	`gorm:"FOREIGNKEY:UserID;ASSOCIATION_FOREIGNKEY:ID"`
-		UserID          int `json:"user_id"`
-		ViewCount       int `json:"view_count"`
+		CategoryID      int     `json:"category_id"`
+		Excerpt         string  `json:"excerpt"`
+		LastReplyUserID int     `json:"last_reply_user_id"`
+		ReplyCount      int     `json:"reply_count"`
+		Slug            string  `json:"slug"`
+		Title           string  `json:"title"`
+		User            User    `gorm:"FOREIGNKEY:UserID;ASSOCIATION_FOREIGNKEY:ID"`
+		UserID          int     `json:"user_id"`
+		ViewCount       int     `json:"view_count"`
 		TopReplies      Replies `json:"topReplies"`
 	}
 
 	Article struct {
 		gorm.Model
 		Body            string `json:"body"`
-		CategoryID      int         `json:"category_id"`
-		Excerpt         string      `json:"excerpt"`
-		LastReplyUserID int         `json:"last_reply_user_id"`
-		ReplyCount      int         `json:"reply_count"`
-		Slug		string 	    `json:"slug"`
-		Title           string      `json:"title"`
-		UserID          int `json:"user_id"`
-		ViewCount       int `json:"view_count"`
+		CategoryID      int    `json:"category_id"`
+		Excerpt         string `json:"excerpt"`
+		LastReplyUserID int    `json:"last_reply_user_id"`
+		ReplyCount      int    `json:"reply_count"`
+		Slug            string `json:"slug"`
+		Title           string `json:"title"`
+		UserID          int    `json:"user_id"`
+		ViewCount       int    `json:"view_count"`
 	}
 
-		// TopReplies      Replies `json:"topReplies"`
+	// TopReplies      Replies `json:"topReplies"`
 	Article2 struct {
 		Article
-		Category        `json:"category"`
-		User		User	`json:"user"`
-		TopReplies      Replies `json:"topReplies"`
+		Category   `json:"category"`
+		User       User    `json:"user"`
+		TopReplies Replies `json:"topReplies"`
 	}
 )
 
@@ -57,13 +57,12 @@ func GetAllArticles() (c []Article, err error) {
 	return
 }
 
-
 func GetArticle(id int) (c Article, err error) {
 	beego.Error("this id =====", id)
 	conn.First(&c, id)
 	UpdateArticleView(id)
-	if ( conn.Error != nil && conn.RowsAffected > 0 ) {
-	 	err = nil
+	if conn.Error != nil && conn.RowsAffected > 0 {
+		err = nil
 	}
 	return
 }
@@ -81,8 +80,8 @@ func UpdateArticleView(topic_id int) (a Article, err error) {
 	return
 }
 
-func  TestRelated() {
-	var a  Article
+func TestRelated() {
+	var a Article
 	conn.First(&a)
 	// conn.Debug().Model(&a).Related(&a.ID).Find(&a.User)
 }

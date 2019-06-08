@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"github.com/astaxie/beego"
 	"encoding/json"
+	"github.com/astaxie/beego"
 	"github.com/bbhj/bbac/models"
 )
 
@@ -19,8 +19,8 @@ type VolunteerController struct {
 // @router / [Post]
 func (u *VolunteerController) Post() {
 	var user models.Volunteer
-	
-        json.Unmarshal(u.Ctx.Input.RequestBody, &user)
+
+	json.Unmarshal(u.Ctx.Input.RequestBody, &user)
 
 	// user.Openid = u.GetString("openid")
 	// user.City = u.GetString("city")
