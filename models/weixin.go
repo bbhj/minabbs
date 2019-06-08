@@ -5,8 +5,6 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
-var ()
-
 type (
 	WechatLoginScene struct {
 		gorm.Model
