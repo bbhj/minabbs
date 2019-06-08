@@ -7,8 +7,6 @@ import (
 	"time"
 )
 
-var ()
-
 func init() {
 }
 

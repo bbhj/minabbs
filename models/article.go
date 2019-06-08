@@ -60,7 +60,6 @@ func GetAllArticles() (c []Article, err error) {
 func GetArticle(id int) (c Article, err error) {
 	beego.Error("this id =====", id)
 	conn.First(&c, id)
-	UpdateArticleView(id)
 	if conn.Error != nil && conn.RowsAffected > 0 {
 		err = nil
 	}
@@ -80,8 +79,3 @@ func UpdateArticleView(topic_id int) (a Article, err error) {
 	return
 }
 
-func TestRelated() {
-	var a Article
-	conn.First(&a)
-	// conn.Debug().Model(&a).Related(&a.ID).Find(&a.User)
-}
