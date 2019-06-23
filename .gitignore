@@ -7,10 +7,12 @@ plugins/*.so
 bbac
 minabbs
 main
+debug
 logs/*
 lastupdate.tmp
 routers/commentsRouter__*.go
 vendor/*
 swagger/*
+.vscode
 .idea
 .DS_Store

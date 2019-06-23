@@ -12,6 +12,7 @@ import (
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/context"
+	"github.com/astaxie/beego/plugins/cors"
 )
 
 func init() {
@@ -31,6 +32,14 @@ func init() {
 	}
 
 	beego.InsertFilter("/*", beego.BeforeRouter, FilterUser)
+	beego.InsertFilter("*", beego.BeforeRouter, cors.Allow(&cors.Options{
+		// AllowAllOrigins: true,
+		AllowOrigins:     []string{"http://localhost:9527", "http://127.0.0.1:9527"},
+		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowHeaders:     []string{"Origin", "Authorization", "Access-Control-Allow-Origin", "Access-Control-Allow-Headers", "Content-Type"},
+		ExposeHeaders:    []string{"Content-Length", "Access-Control-Allow-Origin", "Access-Control-Allow-Headers", "Content-Type"},
+		AllowCredentials: true,
+	}))
 
 	ns := beego.NewNamespace("/v1",
 		beego.NSNamespace("/init", beego.NSInclude(&controllers.InitController{})),

@@ -304,4 +304,49 @@ func init() {
 			Filters:          nil,
 			Params:           nil})
 
+	beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:WechatController"] = append(beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:WechatController"],
+		beego.ControllerComments{
+			Method:           "PcRedirectLoginQR",
+			Router:           `/pc-redirect-login-qr`,
+			AllowHTTPMethods: []string{"get"},
+			MethodParams:     param.Make(),
+			Filters:          nil,
+			Params:           nil})
+
+	beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:WechatController"] = append(beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:WechatController"],
+		beego.ControllerComments{
+			Method:           "PcRedirect",
+			Router:           `/pc-redirect`,
+			AllowHTTPMethods: []string{"get"},
+			MethodParams:     param.Make(),
+			Filters:          nil,
+			Params:           nil})
+
+	beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:WechatController"] = append(beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:WechatController"],
+		beego.ControllerComments{
+			Method:           "PcCheck",
+			Router:           `/pc-check`,
+			AllowHTTPMethods: []string{"get"},
+			MethodParams:     param.Make(),
+			Filters:          nil,
+			Params:           nil})
+
+	beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:WechatController"] = append(beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:WechatController"],
+		beego.ControllerComments{
+			Method:           "PcLoginState",
+			Router:           `/pc-login-state`,
+			AllowHTTPMethods: []string{"get"},
+			MethodParams:     param.Make(),
+			Filters:          nil,
+			Params:           nil})
+
+	beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:WechatController"] = append(beego.GlobalControllerRouter["github.com/bbhj/minabbs/controllers:WechatController"],
+		beego.ControllerComments{
+			Method:           "PcCheck",
+			Router:           `/pc-check`,
+			AllowHTTPMethods: []string{"post"},
+			MethodParams:     param.Make(),
+			Filters:          nil,
+			Params:           nil})
+
 }

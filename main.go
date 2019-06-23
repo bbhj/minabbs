@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/bbhj/minabbs/models"
+
 	_ "github.com/bbhj/minabbs/routers"
 
 	"github.com/astaxie/beego"
@@ -12,6 +13,7 @@ import (
 
 func main() {
 	beego.SetLogFuncCall(true)
+	beego.BConfig.CopyRequestBody = true
 	logpath := path.Join(beego.AppPath, "logs")
 	os.Mkdir(logpath, 0755)
 	logfile := path.Join(logpath, beego.BConfig.AppName+".log")

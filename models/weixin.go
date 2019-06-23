@@ -41,4 +41,8 @@ type (
 		AutoColor bool        `json:"auto_color"`
 		LineColor interface{} `json:"line_color"`
 	}
+
+	RequestWeChatQRLoginCheck struct {
+		State string `json:"state"`
+	}
 )
